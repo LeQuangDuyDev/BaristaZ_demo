@@ -91,7 +91,7 @@ return(<>
 <section id="contact" className="light"><div className="wrap">
 <Head tag="Liên hệ">Ghé thăm <em><Brand/></em></Head>
 <div className="ct"><div className="info rv l">
-<p><i>📍</i><span>123 Nguyễn Huệ, Quận 1, TP. Hồ Chí Minh<br/><small>(địa chỉ demo – cập nhật địa chỉ thật)</small></span></p>
+<p><i>📍</i><span>123 Nguyễn Huệ, Quận 1, TP. Hồ Chí Minh<br/><small>(địa chỉ demo)</small></span></p>
 <p><i>📞</i><span>0900 000 000</span></p><p><i>✉️</i><span>hello@baristazone.vn</span></p><p><i>🕘</i><span>Thứ 2 – Chủ nhật: 8:00 – 20:00</span></p>
 <a className="btn mt-3.5" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=123+Nguyen+Hue+Quan+1+Ho+Chi+Minh">Chỉ đường Google Maps</a></div>
 <div className="map rv r"><iframe loading="lazy" title="Bản đồ BaristaZone" src="https://maps.google.com/maps?q=123%20Nguy%E1%BB%85n%20Hu%E1%BB%87%2C%20Qu%E1%BA%ADn%201%2C%20TP.HCM&output=embed" allowFullScreen/></div></div></div></section>
