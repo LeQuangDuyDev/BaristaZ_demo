@@ -1,6 +1,6 @@
 import {useEffect} from 'react'
 import {C,T} from '../data'
-import {COURSE_DETAIL,TEAM_DETAIL,PERKS} from '../details'
+import {COURSE_DETAIL,TEAM_DETAIL,PERKS,initial} from '../details'
 
 export default function DetailModal({det,items,photo,setDet,onReg}){
   const open=!!det,close=()=>setDet(null)
@@ -24,7 +24,7 @@ export default function DetailModal({det,items,photo,setDet,onReg}){
 
   const t=T[det.i],d=TEAM_DETAIL[det.i]||{points:[],courses:[]},p=photo('team',det.i+1)
   return wrap(<>
-    <div className="dh"><div className="dav">{p?<img src={p} alt={t[0]} decoding="async"/>:t[3]}</div>
+    <div className="dh"><div className="dav">{p?<img src={p} alt={t[0]} decoding="async"/>:initial(t)}</div>
       <div><span className="lv2">{d.exp&&`Kinh nghiệm: ${d.exp}`}</span><h3>{t[0]}</h3><p className="dsum">{t[1]}</p></div></div>
     <p>{d.bio||t[2]}</p>
     {d.quote&&<blockquote className="dq">“{d.quote}”</blockquote>}

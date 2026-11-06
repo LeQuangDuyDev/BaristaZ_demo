@@ -6,6 +6,7 @@ import {useReveal,useScrollFx,useCount} from './hooks'
 import Lightbox from './components/Lightbox'
 import RegModal from './components/RegModal'
 import DetailModal from './components/DetailModal'
+import {initial} from './details'
 
 const Brand=()=><span className="bn">Barista<b>Zone</b></span>
 const MQ1=Array.from({length:8},()=>['☕ CÀ PHÊ','🎨 LATTE ART','🧋 TRÀ SỮA','🍰 BÁNH LẠNH','🍵 MATCHA','🌍 BARISTA QUỐC TẾ']).flat()
@@ -19,7 +20,7 @@ const items={
 const Zm=({k,i,html,cap,cls='',style,zoom})=><div className={`zm ${cls}`} data-cap={cap} style={style} onClick={()=>zoom(k,i)} dangerouslySetInnerHTML={{__html:html}}/>
 const Count=({n,label})=>{const v=useCount(n);return <div><b>{v}</b><small>{label}</small></div>}
 const Head=({tag,children,sub,cls=''})=><div className={`rv ${cls}`}><span className="tag">{tag}</span><h2>{children}</h2>{sub&&<p className="sub">{sub}</p>}</div>
-const FEATS=[['👨‍🏫','Giảng viên chuyên nghiệp','Barista quốc tế, bartender nhiều năm'],['🛠️','Thực hành 80%','Mỗi học viên một bộ dụng cụ riêng'],['📜','Chứng nhận','Cấp chứng chỉ sau khóa học'],['🤝','Hỗ trợ việc làm','Giới thiệu quán, tư vấn mở quán']]
+const FEATS=[['👨‍🏫','Giảng viên chuyên gia','Barista quốc tế, bartender nhiều năm'],['🛠️','Thực hành 80%','Mỗi học viên một bộ dụng cụ riêng'],['📜','Chứng nhận','Cấp chứng chỉ sau khóa học'],['🤝','Hỗ trợ việc làm','Giới thiệu quán, tư vấn mở quán']]
 const SV=[['🏪','Setup quán coffee',['Tư vấn mô hình & mặt bằng','Thiết kế menu, tính giá vốn','Đào tạo nhân sự trước khai trương','Hỗ trợ vận hành 3 tháng đầu'],'Nhận tư vấn'],
 ['🫘','Nguyên liệu pha chế',['Cà phê hạt rang xay chuẩn vị','Matcha, trà, syrup, sauce, bột','Topping, kem, nguyên liệu bánh','Giá sỉ cho học viên'],'Báo giá nguyên liệu'],
 ['⚙️','Máy móc thiết bị',['Máy espresso, máy xay chuyên dụng','Máy xay sinh tố, tủ mát, tủ bánh','Dụng cụ barista đầy đủ','Bảo hành, hướng dẫn sử dụng'],'Xem thiết bị']]
@@ -51,7 +52,7 @@ return(<>
 </div>
 <div className="visual"><div className="ring"/><div className="ring b"/><div className="orbit"/><div className="orbit b"/>
 <img className="logo" src={logo} alt="Logo BaristaZone" onClick={()=>setLb({items:[{svg:`<img src="${logo}" alt="Logo BaristaZone">`,cap:'BaristaZone – Trung tâm đào tạo pha chế'}],i:0})}/>
-<span className="chip c1">☕ Espresso</span><span className="chip c2">🎨 Latte Art</span><span className="chip c3">🍵 Matcha</span></div></div>
+<span className="chip c1">Espresso</span><span className="chip c2">Latte Art</span><span className="chip c3">Matcha</span></div></div>
 <div className="scroll"/></header>
 
 <div className="mqs">
@@ -76,7 +77,7 @@ return(<>
 
 <section id="team"><div className="wrap">
 <Head tag="Đội ngũ giảng viên" sub="Giảng viên đều có nhiều năm kinh nghiệm vận hành quán và tham gia các cuộc thi pha chế.">Học cùng <em>người trong nghề</em></Head>
-<div className="team">{T.map((t,i)=><div key={t[0]} className="tm fx rv" style={{transitionDelay:i*.12+'s'}} onClick={()=>setDet({t:'team',i})}><div className="av">{photo('team',i+1)?<img src={photo('team',i+1)} alt={t[0]} loading="lazy" decoding="async"/>:t[3]}</div><h3>{t[0]}</h3><em>{t[1]}</em><p>{t[2]}</p><span className="more">Xem chi tiết ›</span></div>)}</div></div></section>
+<div className="team">{T.map((t,i)=><div key={t[0]} className="tm fx rv" style={{transitionDelay:i*.12+'s'}} onClick={()=>setDet({t:'team',i})}><div className="av">{photo('team',i+1)?<img src={photo('team',i+1)} alt={t[0]} loading="lazy" decoding="async"/>:initial(t)}</div><h3>{t[0]}</h3><em>{t[1]}</em><p>{t[2]}</p><span className="more">Xem chi tiết ›</span></div>)}</div></div></section>
 
 <section id="gallery" className="light"><div className="wrap">
 <Head tag="Học viên" sub="Những ly nước đầu tay, những nụ cười và ngày nhận chứng chỉ. (Ảnh demo)">Khoảnh khắc <em>tại <Brand/></em></Head>

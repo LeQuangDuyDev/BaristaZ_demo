@@ -362,3 +362,26 @@ section.light::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http
 .tm:hover{transform:none}
 }
 footer{opacity:1;color:rgba(255,255,255,.9)}
+
+/* ===== chip hero đồng bộ: cùng kiểu kính tối + chấm đỏ ===== */
+.chip{display:flex;align-items:center;gap:7px;white-space:nowrap;background:rgba(20,12,14,.72);color:#fff;border:1px solid rgba(255,255,255,.22);padding:7px 14px;font-size:.78rem;font-weight:600;letter-spacing:.02em;box-shadow:0 8px 22px rgba(0,0,0,.35)}
+.chip::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--red);flex:none}
+.chip.c1{top:9%;left:2%;bottom:auto;right:auto}
+.chip.c2{top:46%;right:-2%;bottom:auto;left:auto;animation-delay:-1.4s}
+.chip.c3{bottom:8%;left:8%;top:auto;right:auto;animation-delay:-2.8s}
+
+/* ===== thẻ giảng viên trong suốt ===== */
+.tm{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);color:#fff;box-shadow:none}
+.tm p{opacity:.78}
+.tm:hover{background:rgba(228,16,56,.16);border-color:rgba(228,16,56,.65);color:#fff;transform:translateY(-8px)}
+
+/* ===== nền sáng bớt đơn điệu: hoa văn hạt cà phê + vệt sáng mờ ===== */
+section.light::before{content:"";position:absolute;left:0;right:0;top:0;bottom:0;width:auto;height:auto;border-radius:0;pointer-events:none;
+background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='%23e41038' stroke-opacity='.17' stroke-width='2.2' stroke-linecap='round'%3E%3Cg transform='translate(42 52) rotate(-25)'%3E%3Cellipse rx='15' ry='22'/%3E%3Cpath d='M0-20C-8-8 8 8 0 20'/%3E%3C/g%3E%3Cg transform='translate(168 96) rotate(35)'%3E%3Cellipse rx='13' ry='19'/%3E%3Cpath d='M0-17C-7-7 7 7 0 17'/%3E%3C/g%3E%3Cg transform='translate(98 190) rotate(70)'%3E%3Cellipse rx='14' ry='20'/%3E%3Cpath d='M0-18C-7-7 7 7 0 18'/%3E%3C/g%3E%3Cpath d='M205 30v14M198 37h14M20 150v10M15 155h10M215 205v10M210 210h10'/%3E%3C/g%3E%3C/svg%3E") 0 0/240px 240px,radial-gradient(520px 520px at 6% 38%,rgba(228,16,56,.12),transparent 70%),radial-gradient(580px 580px at 94% 62%,rgba(255,150,110,.22),transparent 70%);
+-webkit-mask-image:linear-gradient(transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(transparent,#000 14%,#000 86%,transparent)}
+@media(max-width:600px){
+.chip{padding:4px 10px;font-size:.64rem;gap:5px}.chip::before{width:5px;height:5px}
+.tm:hover{transform:none}
+section.light::before{background-size:170px 170px,auto,auto}
+}
+.card .cn{display:none}

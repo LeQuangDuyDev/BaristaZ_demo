@@ -33,3 +33,6 @@ export const TEAM_DETAIL=[
 {exp:'Nhiều năm',bio:'Bartender sáng tạo signature drink cho nhiều chuỗi, chuyên pha chế hiện đại và trà sữa.',points:['Sáng tạo công thức signature cho nhiều chuỗi','Tư vấn xây dựng menu và tính giá vốn','Chuyên về mocktail và trà sữa'],courses:[4,5,6],quote:'Công thức tốt phải bán được và làm được đều tay.'},
 {exp:'Nhiều năm',bio:'Pastry chef chuyên bánh lạnh và đồ uống matcha, hướng dẫn chi tiết cho người mới.',points:['Chuyên bánh lạnh không cần lò nướng','Am hiểu các loại matcha','Hướng dẫn tận tình từng bước'],courses:[7,8],quote:'Bánh đẹp là bánh làm đúng từng bước nhỏ.'}
 ]
+
+// Chữ cái hiển thị khi giảng viên chưa có ảnh: lấy từ cột thứ 4 của data.js, nếu bỏ trống thì tự lấy chữ đầu của tên
+export const initial=t=>t[3]||String(t[0]).trim().split(/\s+/).pop().charAt(0).toUpperCase()
