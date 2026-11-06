@@ -19,25 +19,28 @@ export function useReveal(){useEffect(()=>{
 // Hiệu ứng cuộn: nhẹ, chỉ chạy 1 lần/khung hình khi có scroll
 export function useScrollFx(){useEffect(()=>{
   const $=s=>document.querySelector(s)
-  const bar=$('#bar'),nav=$('#nav'),hero=$('#home'),hw=$('#home .wrap'),vis=$('.visual')
-  let ticking=false,heroOn=true
+  const bar=$('#bar'),nav=$('#nav'),hero=$('#home'),vis=$('.visual'),svc=$('#services')
+  const svs=[...document.querySelectorAll('.sv')]
+  let ticking=false,heroOn=true,svcOn=false
 
   const update=()=>{
     ticking=false
     const y=scrollY,H=innerHeight,max=document.documentElement.scrollHeight-H
     bar.style.transform=`scaleX(${max>0?y/max:0})`
     nav.classList.toggle('s',y>40)
-    if(heroOn){ // chỉ tính khi hero còn trong màn hình
-      const k=Math.min(y/H,1)
-      hw.style.opacity=1-k*.8
-      vis.style.transform=`translate3d(0,${y*.08}px,0)`
+    if(svcOn){ // số trong thẻ dịch vụ: càng gần giữa màn hình càng đậm và lớn
+      svs.forEach(el=>{const r=el.getBoundingClientRect(),d=Math.abs(r.top+r.height/2-H/2)/(H*.6)
+        el.style.setProperty('--p',Math.max(0,1-d).toFixed(2))})
     }
+    if(heroOn)vis.style.transform=y<4?'':`translate3d(0,${y*.08}px,0)` // chỉ parallax nhẹ, KHÔNG làm mờ nội dung
   }
   const onScroll=()=>{if(!ticking){ticking=true;requestAnimationFrame(update)}}
 
   // Hero ra khỏi màn hình -> tạm dừng hạt cà phê, vòng quay, logo...
-  const io=new IntersectionObserver(([e])=>{heroOn=e.isIntersecting;hero.classList.toggle('paused',!heroOn)})
+  const io=new IntersectionObserver(([e])=>{heroOn=e.isIntersecting;hero.classList.toggle('paused',!heroOn);if(heroOn)onScroll()})
   io.observe(hero)
+  const io2=new IntersectionObserver(([e])=>{svcOn=e.isIntersecting;if(svcOn)onScroll()})
+  if(svc)io2.observe(svc)
   addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);update()
 
   // Nghiêng thẻ khóa học: chỉ trên máy có chuột, đo vị trí 1 lần khi vào thẻ
@@ -62,7 +65,7 @@ export function useScrollFx(){useEffect(()=>{
     document.body.appendChild(s);setTimeout(()=>s.remove(),700)}}
   document.addEventListener('pointerdown',sp)
 
-  return()=>{io.disconnect();removeEventListener('scroll',onScroll);removeEventListener('resize',onScroll);document.removeEventListener('pointerdown',sp);off.forEach(f=>f())}
+  return()=>{io.disconnect();io2.disconnect();removeEventListener('scroll',onScroll);removeEventListener('resize',onScroll);document.removeEventListener('pointerdown',sp);off.forEach(f=>f())}
 },[])}
 
 export function useCount(n){const[v,setV]=useState(0);useEffect(()=>{let x=0;const st=n/60,t=setInterval(()=>{x+=st;if(x>=n){x=n;clearInterval(t)}setV(Math.round(x))},25);return()=>clearInterval(t)},[n]);return v.toLocaleString('vi-VN')+(n>=1000?'+':'')}
